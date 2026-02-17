@@ -1,0 +1,12 @@
+<section class="flex flex-row gap-3 mt-2">
+  <input
+    type="text"
+    class="input input-border mr-2 w-56"
+    placeholder="{{place_holder_value}}"
+    autofocus
+    #txtSearch
+    (input)="save_input_value(txtSearch.value)"
+  />
+
+  <button (click)="search_capital()" class="btn btn-secondary font-semibold">Buscar</button>
+</section>
