@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { RESTCountry } from '../../interfaces/rest-countries.interface';
 
 @Component({
   selector: 'app-country-list',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './country-list.css',
 })
 export class CountryList {
-
+  public countries = input.required<RESTCountry[]>();
 }
