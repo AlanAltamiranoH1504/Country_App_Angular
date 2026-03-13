@@ -13,9 +13,16 @@ export class CountryService {
   private http = inject(HttpClient);
 
   public searchByCapital(capital: string): Observable<Country[]> {
-    return this.http.get<RESTCountry[]>(`${environment.URL_BY_CAPIRAL}/${capital}`)
-    .pipe(
-      map(restConuntries => CountryMapper.mapRestCountryArrayToCountryArray(restConuntries))
-    );
+    return this.http
+      .get<RESTCountry[]>(`${environment.URL_BY_CAPIRAL}/${capital}`)
+      .pipe(
+        map((restConuntries) => CountryMapper.mapRestCountryArrayToCountryArray(restConuntries)),
+      );
+  }
+
+  public searchByCountry(country: string): Observable<Country[]> {
+    return this.http
+      .get<RESTCountry[]>(`${environment.URL_BY_NAME}/${country}`)
+      .pipe(map((restCountries) => CountryMapper.mapRestCountryArrayToCountryArray(restCountries)));
   }
 }

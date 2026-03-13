@@ -2,4 +2,8 @@
 <app-country-search-form (capital_to_search)="receive_capital_to_search($event)"></app-country-search-form>
 
 
-<app-country-list [countries]="countries()"></app-country-list>
+@if (isError()) {
+    <h3 class="text-center my-5 text-2xl"><span class="font-semibold text-amber-500">{{isError() | uppercase}}</span></h3>
+} @else {
+    <app-country-list [countries]="countries()"></app-country-list>
+}

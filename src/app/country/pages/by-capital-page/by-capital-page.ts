@@ -5,10 +5,11 @@ import { CountryService } from '../../service/country-service';
 import { RESTCountry } from '../../interfaces/rest-countries.interface';
 import { CountryMapper } from '../../mappers/country.mapper';
 import { Country } from '../../interfaces/country.interface';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-capital-page',
-  imports: [CountrySearchForm, CountryList],
+  imports: [CountrySearchForm, CountryList, UpperCasePipe],
   templateUrl: './by-capital-page.html',
   styleUrl: './by-capital-page.css',
 })
@@ -19,8 +20,14 @@ export class ByCapitalPage {
   public countries = signal<Country[]>([]);
 
   public receive_capital_to_search(capital_to_search: string) {
-    this.country_service.searchByCapital(capital_to_search).subscribe((cout) => {
-      this.countries.set(cout);
+    this.country_service.searchByCapital(capital_to_search).subscribe({
+      next: (countries) => {
+        this.countries.set(countries);
+      },
+      error: (err) => {
+        this.countries.set([]);
+        this.isError.set(`No se encontraron registros para ${capital_to_search}`)
+      },
     });
   }
 }
