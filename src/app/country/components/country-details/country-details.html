@@ -1,1 +1,6 @@
-<p>country-details works!</p>
+@if (isError() !== null) {
+    <h2 class="text-center text-2xl font-semibold text-amber-400 my-5">Ocurrio un error en la busqueda de detalles del pais</h2>
+} @else {
+    <!-- Aqui va el componente que va a pintar detalles especificos  -->
+     <app-country-information [country]="countryDetails()"></app-country-information>
+}

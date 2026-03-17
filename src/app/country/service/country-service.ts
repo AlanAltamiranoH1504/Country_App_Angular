@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { RESTCountry } from '../interfaces/rest-countries.interface';
-import { map, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
 
@@ -21,8 +21,18 @@ export class CountryService {
   }
 
   public searchByCountry(country: string): Observable<Country[]> {
-    return this.http
-      .get<RESTCountry[]>(`${environment.URL_BY_NAME}/${country}`)
-      .pipe(map((restCountries) => CountryMapper.mapRestCountryArrayToCountryArray(restCountries)));
+    return this.http.get<RESTCountry[]>(`${environment.URL_BY_NAME}/${country}`).pipe(
+      delay(300),
+      map((restCountries) => CountryMapper.mapRestCountryArrayToCountryArray(restCountries)),
+    );
+  }
+
+  public searchCountryDetails(alphacode: string) {
+    return this.http.get<RESTCountry[]>(`${environment.URL_BY_ALPHACODE}/${alphacode}`).pipe(
+      map((restCountries) => CountryMapper.mapRestCountryArrayToCountryArray(restCountries)),
+      map((countries) => {
+        return countries[0];
+      }),
+    );
   }
 }
