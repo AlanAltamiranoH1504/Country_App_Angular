@@ -13,6 +13,9 @@ export class CountrySearchForm {
 
   protected save_input_value(value: string) {
     this.inputSearch.set(value);
+    setTimeout(() => {
+      this.capital_to_search.emit(this.inputSearch());
+    }, 500);
   }
 
   protected search_capital() {

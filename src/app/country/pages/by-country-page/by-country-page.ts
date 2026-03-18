@@ -3,10 +3,11 @@ import { CountrySearchForm } from "../../components/country-search-form/country-
 import { CountryList } from "../../components/country-list/country-list";
 import { CountryService } from '../../service/country-service';
 import { Country } from '../../interfaces/country.interface';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-by-country-page',
-  imports: [CountrySearchForm, CountryList],
+  imports: [CountrySearchForm, CountryList, UpperCasePipe],
   templateUrl: './by-country-page.html',
   styleUrl: './by-country-page.css',
 })
@@ -18,6 +19,7 @@ export class ByCountryPage {
   protected receive_countr_to_search(country: string) {
     this.countryService.searchByCountry(country).subscribe({
       next: (countries) => {
+        this.isError.set(null);
         this.countries.set(countries);
       },
       error: (err) => {

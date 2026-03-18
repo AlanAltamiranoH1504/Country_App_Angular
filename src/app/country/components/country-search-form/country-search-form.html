@@ -5,7 +5,7 @@
     placeholder="{{place_holder_value}}"
     autofocus
     #txtSearch
-    (input)="save_input_value(txtSearch.value)"
+    (keyup)="save_input_value(txtSearch.value)"
   />
 
   <button (click)="search_capital()" class="btn btn-secondary font-semibold">Buscar</button>

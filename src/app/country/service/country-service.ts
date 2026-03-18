@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.development';
 import { RESTCountry } from '../interfaces/rest-countries.interface';
-import { delay, map, Observable } from 'rxjs';
+import { delay, map, Observable, of } from 'rxjs';
 import { Country } from '../interfaces/country.interface';
 import { CountryMapper } from '../mappers/country.mapper';
 

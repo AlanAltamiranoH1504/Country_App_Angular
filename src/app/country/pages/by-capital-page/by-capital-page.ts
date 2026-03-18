@@ -22,6 +22,7 @@ export class ByCapitalPage {
   public receive_capital_to_search(capital_to_search: string) {
     this.country_service.searchByCapital(capital_to_search).subscribe({
       next: (countries) => {
+        this.isError.set(null);
         this.countries.set(countries);
       },
       error: (err) => {
