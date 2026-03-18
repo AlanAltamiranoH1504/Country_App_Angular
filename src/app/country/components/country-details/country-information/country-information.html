@@ -1,1 +1,13 @@
-<p>{{country()?.capital}}</p>
+<section class="mx-10 space-y-3 my-5">
+  <h1 class="text-2xl">{{ country()?.name }}</h1>
+  <div class="flex md:flex-row flex-col justify-between">
+    <div>
+      <p class="text-xl font-thin">Capital: {{ country()?.capital }}</p>
+      <p class="text-xl font-thin">Población: {{ country()?.population | number }}</p>
+      <p class="text-xl font-thin">Icono: {{country()?.flag}}</p>
+    </div>
+    <div>
+        <img class="max-h-64" src="{{ country()?.flagSvg }}" alt="{{ country()?.name }}" />
+    </div>
+  </div>
+</section>
