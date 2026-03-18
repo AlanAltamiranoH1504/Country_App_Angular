@@ -1,1 +1,19 @@
-<!-- <app-country-list [countries]=""></app-country-list> -->
+<h2 class="text-2xl font-semibold mb-3">Por Región</h2>
+<p class="btn btn-primary">Seleccione una region</p>
+<div class="my-10 flex gap-4">
+  @for (region of regions; track region) {
+    <button
+      (click)="selectRegion(region)"
+      [class.btn-primary]="selectedRegion() === region"
+      class="btn btn-outline mr-2 w-[100px]"
+    >
+      {{ region }}
+    </button>
+  }
+</div>
+
+@if (isError()) {
+  <h2 class="text-2xl text-center text-amber-500">{{ isError() }}</h2>
+} @else {
+  <app-country-list [countries]="countries()"></app-country-list>
+}
